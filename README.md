@@ -3,9 +3,13 @@
 ##Use
 
   Test for Atmel SIGFOX shield ATAK55002-V2.
+  
   This Arduino sketch sends power supply voltage measure and temperature measure
   every 15 minutes (or when shield button is pressed), using SIGFOX network.
+  
   This sketch uses the Atmel SIGFOX shield library included.
+
+---
 
 This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -17,11 +21,18 @@ This library is free software; you can redistribute it and/or
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
   Lesser General Public License for more details.
 
+##Get Hardware
+
+* [Arduino Uno](http://store.arduino.cc/index.php?main_page=product_info&cPath=11&products_id=195)
+* [Atmel Shield](http://www.atmel.com/tools/atak55002-v2.aspx)
 
 ##Credits 
 
  Copyright (c) 2015 Daniele Denaro and
-  - FuturaGroup srl (www.futurashop.it)
-  - Open-Electronics (www.open-electronics.org)
-  - Atmel Corporation.  
+ 
+  * FuturaGroup srl (www.futurashop.it)
+  * Open-Electronics (www.open-electronics.org)
+  * Atmel Corporation.  
+  
+  
   All right reserved.
