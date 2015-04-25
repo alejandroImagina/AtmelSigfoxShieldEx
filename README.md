@@ -21,6 +21,26 @@ This library is free software; you can redistribute it and/or
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
   Lesser General Public License for more details.
 
+##Frame composition
+
+This example only uses 3 bytes, out of the maximum 12 bytes that can be sent over SIGFOX.  
+Power supply voltage in coded on the 2 last bytes, in mV.  
+Temperature is sent as an integer on one byte, in °C.
+
+###Example 
+
+Frame sent : **000000000000000000190CA3**
+
+* Power supply voltage
+  * 00000000000000000019**0CA3**
+  * 0CA3<sub>16</sub> == 3235<sub>10</sub> 
+  * Voltage is 3235 mV
+* Temperature
+  * 000000000000000000**19**0CA3
+  * 19<sub>16</sub> == 25<sub>10</sub>
+  * Temperature is 25°C
+
+
 ##Get Hardware
 
 * [Arduino Uno](http://store.arduino.cc/index.php?main_page=product_info&cPath=11&products_id=195)
