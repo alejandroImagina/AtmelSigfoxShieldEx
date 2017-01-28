@@ -97,6 +97,42 @@ int SIGFOX::sendMessage(unsigned char mess[],int len)
   return sig; 
 }
 
+int SIGFOX::sendMessageWithAck(unsigned char mess[],int len, unsigned char (&rx_mess) [8])
+{  
+  if (len==0) return -1;
+  getStatus();             //reset NNEVENT
+  digitalWrite(SS,LOW); delayMicroseconds(50);
+  if (len>12) len=12;
+  SPI.transfer(0x07); delayMicroseconds(50);
+  SPI.transfer(len); delayMicroseconds(50);
+  int i;
+  for(i=0;i<len;i++) {SPI.transfer(mess[i]); delayMicroseconds(50);}
+  digitalWrite(SS,HIGH); delayMicroseconds(50);
+
+  digitalWrite(SS,LOW); delayMicroseconds(50);
+  SPI.transfer(0x0E);delayMicroseconds(50);
+  digitalWrite(SS,HIGH); delayMicroseconds(50);
+  int ret=99;
+  for(i=0;i<1000;i++) 
+  {
+    if (digitalRead(NEVENT)==0) {getStatus();ret=getStatusCode(2);break;}
+    else {analogWrite(LED1,10);delay(50);analogWrite(LED1,0);delay(50);} 
+  } 
+
+  digitalWrite(SS,LOW); delayMicroseconds(50);
+  SPI.transfer(0x10); delayMicroseconds(50);
+  SPI.transfer(0); delayMicroseconds(50);
+  for(i=0;i<8;i++)
+  {
+    rx_mess[i]=SPI.transfer(0);
+    delayMicroseconds(50);
+  }
+  digitalWrite(SS,HIGH); delayMicroseconds(50);
+  
+  if (ret==99) sig=13;
+  return sig; 
+}
+
 
 int SIGFOX::getStatusCode(byte type)
 {
