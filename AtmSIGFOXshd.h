@@ -107,6 +107,11 @@ class SIGFOXshield
   * Send bytes array buffer to SIGFOX network
   */  
   int sendMessage(unsigned char mess[],int len){return SIG.sendMessage(mess,len);}
+  /*
+  * Send bytes array buffer to SIGFOX network and reading the downlink payload
+  */ 
+  int sendMessageWithAck(unsigned char mess[],int len, unsigned char (&rx_mess) [8]){return SIG.sendMessageWithAck(mess,len, rx_mess);}
+
 
   /*
   * Switch off SIGFOX module

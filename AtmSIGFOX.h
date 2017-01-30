@@ -61,6 +61,12 @@ class SIGFOX
   * Return SIGFOX status code
   */  
   int sendMessage(unsigned char mess[],int len);
+  /*
+  * Send an array of bytes (max 12 bytes long) as message to SIGFOX network
+  * Read the acknowledgment payload (downlink) and store it in an array of bytes (fixed 8 bytes long)
+  * Return SIGFOX status code
+  */ 
+  int sendMessageWithAck(unsigned char mess[],int len, unsigned char (&rx_mess) [8]);
   
   /*
   * Read status (fill ssm,atm,sig status variables)
